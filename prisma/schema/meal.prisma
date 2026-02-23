@@ -1,0 +1,26 @@
+model Meal {
+  id          String          @id @default(cuid())
+  status      MealStatus      @default(AVAILABLE)
+  provider    ProviderProfile @relation(fields: [providerId], references: [id])
+  providerId  String
+  category    Category        @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  name        String
+  description String?
+  price       Float
+  imageUrl    String?
+
+  // ✅ এই দুটি ফিল্ড যোগ করুন রেটিং ট্র্যাক করার জন্য
+  averageRating Float       @default(0)
+  totalReviews  Int         @default(0)
+
+  reviews     Review[]
+  orderItems  OrderItem[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+enum MealStatus {
+  AVAILABLE
+  OUT_OF_STOCK
+}
