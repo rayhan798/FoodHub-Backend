@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  status    String   @default("ACTIVE")
+  meals     Meal[]   
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+model OrderItem {
+  id       String @id @default(cuid())
+  order    Orders @relation(fields: [orderId], references: [id])
+  orderId  String
+  meal     Meal   @relation(fields: [mealId], references: [id])
+  mealId   String
+  quantity Int
+  price    Float
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  meal       Meal     @relation(fields: [mealId], references: [id])
+  mealId     String
+  customer   User     @relation(fields: [customerId], references: [id])
+  customerId String
+  rating     Int
+  comment    String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+enum OrderStatus {
+  PENDING
+  PREPARING
+  READY
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  CASH_ON_DELIVERY
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+}
+
