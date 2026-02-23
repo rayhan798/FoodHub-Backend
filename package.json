@@ -1,11 +1,13 @@
 {
   "name": "foodhub-backend",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tsx watch src/server.ts"
+    "dev": "npx tsx watch src/server.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
