@@ -33,3 +33,15 @@ yarn-error.log*
 .vercel
 
 dist
+.vercel
+
+# Node
+node_modules/
+.env
+
+# Local uploads
+uploads/
+
+# Build output (if you want Vercel to build)
+api/
+dist/

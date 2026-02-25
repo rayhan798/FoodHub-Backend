@@ -9,7 +9,8 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "target": "ES2023",
-    "types": [],
+    // "types": [],
+     "types": ["node", "@vercel/node"],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
