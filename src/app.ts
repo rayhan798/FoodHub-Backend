@@ -2,9 +2,6 @@ import express, { Application, Request, Response } from "express";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth";
 import cors from "cors";
-import path from "path";
-import fs from "fs";
-
 // Router Imports
 import authRouter from "./modules/auth/auth.router";
 import adminUserRouter from "./modules/users/users.router";
@@ -16,6 +13,7 @@ import { ProviderRoutes as ProviderManagementRoutes } from "./modules/provider-m
 import { CategoryRoutes } from "./modules/categories/category.router";
 import { AdminRoutes } from "./modules/admin/admin.router";
 import { ReviewRoutes } from "./modules/review/review.router";
+import { uploadDir } from "./config/uploadDir";
 
 // Middleware Imports
 import errorHandler from "./middlewares/globalErrorHandler";
@@ -41,19 +39,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-// --- 2. Static Folder Setup (FIXED FOR VERCEL) ---
-
-// use /tmp for vercel, local uploads for dev
-const uploadDir =
-  process.env.VERCEL === "1"
-    ? path.join("/tmp", "uploads")
-    : path.join(process.cwd(), "uploads");
-
-// ensure folder exists
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
+// serve static uploads
 app.use("/uploads", express.static(uploadDir));
 
 
