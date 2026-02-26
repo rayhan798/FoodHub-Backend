@@ -182,6 +182,7 @@ export const ProviderProfileScalarFieldEnum = {
   description: 'description',
   address: 'address',
   phone: 'phone',
+  imageUrl: 'imageUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

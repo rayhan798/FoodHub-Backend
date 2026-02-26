@@ -31,7 +31,10 @@ importers:
         version: 3.0.3
       better-auth:
         specifier: ^1.4.17
-        version: 1.4.19(@prisma/client@7.4.1(prisma@7.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3))(mysql2@3.15.3)(pg@8.18.0)(prisma@7.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        version: 1.4.19(@prisma/client@7.4.1(prisma@7.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3))(mysql2@3.15.3)(pg@8.19.0)(prisma@7.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      cloudinary:
+        specifier: ^2.9.0
+        version: 2.9.0
       cors:
         specifier: ^2.8.6
         version: 2.8.6
@@ -44,12 +47,15 @@ importers:
       multer:
         specifier: ^2.0.2
         version: 2.0.2
+      multer-storage-cloudinary:
+        specifier: ^4.0.0
+        version: 4.0.0(cloudinary@2.9.0)
       nodemailer:
         specifier: ^7.0.13
         version: 7.0.13
       pg:
         specifier: ^8.17.2
-        version: 8.18.0
+        version: 8.19.0
       zod:
         specifier: ^4.3.6
         version: 4.3.6
@@ -68,7 +74,7 @@ importers:
         version: 2.0.0
       '@types/node':
         specifier: ^25.0.10
-        version: 25.3.0
+        version: 25.3.1
       '@types/pg':
         specifier: ^8.16.0
         version: 8.16.0
@@ -80,7 +86,7 @@ importers:
         version: 7.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@25.3.0)(typescript@5.9.3)
+        version: 10.9.2(@types/node@25.3.1)(typescript@5.9.3)
       tsup:
         specifier: ^8.5.1
         version: 8.5.1(jiti@2.6.1)(tsx@4.21.0)(typescript@5.9.3)
@@ -813,8 +819,8 @@ packages:
   '@types/node@20.11.0':
     resolution: {integrity: sha512-o9bjXmDNcF7GbM4CNQpmi+TutCgap/K3w1JyKgxAjqx41zp9qlIAVFi0IhCNsJcXolEqLWhbFbEeL0PvYm4pcQ==}
 
-  '@types/node@25.3.0':
-    resolution: {integrity: sha512-4K3bqJpXpqfg2XKGK9bpDTc6xO/xoUP/RBWS7AtRMug6zZFaRekiLzjVtAoZMquxoAbzBvy5nxQ7veS5eYzf8A==}
+  '@types/node@25.3.1':
+    resolution: {integrity: sha512-hj9YIJimBCipHVfHKRMnvmHg+wfhKc0o4mTtXh9pKBjC8TLJzz0nzGmLi5UJsYAUgSvXFHgb0V2oY10DUFtImw==}
 
   '@types/nodemailer@7.0.11':
     resolution: {integrity: sha512-E+U4RzR2dKrx+u3N4DlsmLaDC6mMZOM/TPROxA0UAPiTgI0y4CEFBmZE+coGWTjakDriRsXG368lNk1u9Q0a2g==}
@@ -1072,6 +1078,10 @@ packages:
 
   cjs-module-lexer@1.2.3:
     resolution: {integrity: sha512-0TNiGstbQmCFwt4akjjBg5pLRTSyj/PkWQ1ZoO2zntmg9yLqSRxwEa4iCfQLGjqhiqBfOJa7W/E8wfGrTDmlZQ==}
+
+  cloudinary@2.9.0:
+    resolution: {integrity: sha512-F3iKMOy4y0zy0bi5JBp94SC7HY7i/ImfTPSUV07iJmRzH1Iz8WavFfOlJTR1zvYM/xKGoiGZ3my/zy64In0IQQ==}
+    engines: {node: '>=9'}
 
   code-block-writer@10.1.1:
     resolution: {integrity: sha512-67ueh2IRGst/51p0n6FvPrnRjAGHY5F8xdjkgrYE7DDzpJe6qA07RYQ9VcoUeo5ATOjSOiWpSL3SWBRRbempMw==}
@@ -1443,6 +1453,9 @@ packages:
   lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
+  lodash@4.17.23:
+    resolution: {integrity: sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==}
+
   long@5.3.2:
     resolution: {integrity: sha512-mNAgZ1GmyNhD7AuqnTG3/VQ26o760+ZYBPKjPvugO8+nLbYfX6TVpJPseBvopbdY+qpZ/lKUnmEc1LeZYS3QAA==}
 
@@ -1504,12 +1517,12 @@ packages:
     resolution: {integrity: sha512-enIvLvRAFZYXJzkCYG5RKmPfrFArdLv+R+lbQ53BmIMLIry74bjKzX6iHAm8WYamJkhSSEabrWN5D97XnKObjQ==}
     engines: {node: 20 || >=22}
 
-  minimatch@10.2.3:
-    resolution: {integrity: sha512-Rwi3pnapEqirPSbWbrZaa6N3nmqq4Xer/2XooiOKyV3q12ML06f7MOuc5DVH8ONZIFhwIYQ3yzPH4nt7iWHaTg==}
+  minimatch@10.2.4:
+    resolution: {integrity: sha512-oRjTw/97aTBN0RHbYCdtF1MQfvusSIBQM0IZEgzl6426+8jSC0nF1a/GmnVLpfB9yyr6g6FTqWqiZVbxrtaCIg==}
     engines: {node: 18 || 20 || >=22}
 
-  minimatch@3.1.4:
-    resolution: {integrity: sha512-twmL+S8+7yIsE9wsqgzU3E8/LumN3M3QELrBZ20OdmQ9jB2JvW5oZtBEmft84k/Gs5CG9mqtWc6Y9vW+JEzGxw==}
+  minimatch@3.1.5:
+    resolution: {integrity: sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==}
 
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
@@ -1541,6 +1554,11 @@ packages:
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
+  multer-storage-cloudinary@4.0.0:
+    resolution: {integrity: sha512-25lm9R6o5dWrHLqLvygNX+kBOxprzpmZdnVKH4+r68WcfCt8XV6xfQaMuAg+kUE5Xmr8mJNA4gE0AcBj9FJyWA==}
+    peerDependencies:
+      cloudinary: ^1.21.0
+
   multer@2.0.2:
     resolution: {integrity: sha512-u7f2xaZ/UG8oLXHvtF/oWTRvT44p9ecwBBqTwgJVq0+4BW1g8OW01TyMEGWBHbyMOYVHXslaut7qEQ1meATXgw==}
     engines: {node: '>= 10.16.0'}
@@ -1556,8 +1574,8 @@ packages:
     resolution: {integrity: sha512-Tz09sEL2EEuv5fFowm419c1+a/jSMiBjI9gHxVLrVdbUkkNUUfjsVYs9pVZu5oCon/kmRh9TfLEObFtkVxmY0w==}
     engines: {node: '>=8.0.0'}
 
-  nanostores@1.1.0:
-    resolution: {integrity: sha512-yJBmDJr18xy47dbNVlHcgdPrulSn1nhSE6Ns9vTG+Nx9VPT6iV1MD6aQFp/t52zpf82FhLLTXAXr30NuCnxvwA==}
+  nanostores@1.1.1:
+    resolution: {integrity: sha512-EYJqS25r2iBeTtGQCHidXl1VfZ1jXM7Q04zXJOrMlxVVmD0ptxJaNux92n1mJ7c5lN3zTq12MhH/8x59nP+qmg==}
     engines: {node: ^20.0.0 || >=22.0.0}
 
   negotiator@1.0.0:
@@ -1664,20 +1682,20 @@ packages:
     resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}
     engines: {node: '>=4.0.0'}
 
-  pg-pool@3.11.0:
-    resolution: {integrity: sha512-MJYfvHwtGp870aeusDh+hg9apvOe2zmpZJpyt+BMtzUWlVqbhFmMK6bOBXLBUPd7iRtIF9fZplDc7KrPN3PN7w==}
+  pg-pool@3.12.0:
+    resolution: {integrity: sha512-eIJ0DES8BLaziFHW7VgJEBPi5hg3Nyng5iKpYtj3wbcAUV9A1wLgWiY7ajf/f/oO1wfxt83phXPY8Emztg7ITg==}
     peerDependencies:
       pg: '>=8.0'
 
-  pg-protocol@1.11.0:
-    resolution: {integrity: sha512-pfsxk2M9M3BuGgDOfuy37VNRRX3jmKgMjcvAcWqNDpZSf4cUmv8HSOl5ViRQFsfARFn0KuUQTgLxVMbNq5NW3g==}
+  pg-protocol@1.12.0:
+    resolution: {integrity: sha512-uOANXNRACNdElMXJ0tPz6RBM0XQ61nONGAwlt8da5zs/iUOOCLBQOHSXnrC6fMsvtjxbOJrZZl5IScGv+7mpbg==}
 
   pg-types@2.2.0:
     resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
     engines: {node: '>=4'}
 
-  pg@8.18.0:
-    resolution: {integrity: sha512-xqrUDL1b9MbkydY/s+VZ6v+xiMUmOUk7SS9d/1kpyQxoJ6U9AO1oIJyUWVZojbfe5Cc/oluutcgFG4L9RDP1iQ==}
+  pg@8.19.0:
+    resolution: {integrity: sha512-QIcLGi508BAHkQ3pJNptsFz5WQMlpGbuBGBaIaXsWK8mel2kQ/rThYI+DbgjUvZrIr7MiuEuc9LcChJoEZK1xQ==}
     engines: {node: '>= 16.0.0'}
     peerDependencies:
       pg-native: '>=3.0.1'
@@ -2147,7 +2165,7 @@ packages:
 
 snapshots:
 
-  '@better-auth/core@1.4.19(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@4.3.6))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.0)':
+  '@better-auth/core@1.4.19(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@4.3.6))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1)':
     dependencies:
       '@better-auth/utils': 0.3.1
       '@better-fetch/fetch': 1.1.21
@@ -2155,12 +2173,12 @@ snapshots:
       better-call: 1.1.8(zod@4.3.6)
       jose: 6.1.3
       kysely: 0.28.11
-      nanostores: 1.1.0
+      nanostores: 1.1.1
       zod: 4.3.6
 
-  '@better-auth/telemetry@1.4.19(@better-auth/core@1.4.19(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@4.3.6))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.0))':
+  '@better-auth/telemetry@1.4.19(@better-auth/core@1.4.19(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@4.3.6))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1))':
     dependencies:
-      '@better-auth/core': 1.4.19(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@4.3.6))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.0)
+      '@better-auth/core': 1.4.19(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@4.3.6))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1)
       '@better-auth/utils': 0.3.0
       '@better-fetch/fetch': 1.1.21
 
@@ -2441,7 +2459,7 @@ snapshots:
   '@prisma/adapter-pg@7.4.1':
     dependencies:
       '@prisma/driver-adapter-utils': 7.4.1
-      pg: 8.18.0
+      pg: 8.19.0
       postgres-array: 3.0.4
     transitivePeerDependencies:
       - pg-native
@@ -2615,7 +2633,7 @@ snapshots:
   '@ts-morph/common@0.11.1':
     dependencies:
       fast-glob: 3.3.3
-      minimatch: 3.1.4
+      minimatch: 3.1.5
       mkdirp: 1.0.4
       path-browserify: 1.0.1
 
@@ -2629,7 +2647,7 @@ snapshots:
 
   '@types/bcrypt@6.0.0':
     dependencies:
-      '@types/node': 25.3.0
+      '@types/node': 25.3.1
 
   '@types/bcryptjs@3.0.0':
     dependencies:
@@ -2638,21 +2656,21 @@ snapshots:
   '@types/body-parser@1.19.6':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 25.3.0
+      '@types/node': 25.3.1
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 25.3.0
+      '@types/node': 25.3.1
 
   '@types/cors@2.8.19':
     dependencies:
-      '@types/node': 25.3.0
+      '@types/node': 25.3.1
 
   '@types/estree@1.0.8': {}
 
   '@types/express-serve-static-core@5.1.1':
     dependencies:
-      '@types/node': 25.3.0
+      '@types/node': 25.3.1
       '@types/qs': 6.14.0
       '@types/range-parser': 1.2.7
       '@types/send': 1.2.1
@@ -2675,18 +2693,18 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@25.3.0':
+  '@types/node@25.3.1':
     dependencies:
       undici-types: 7.18.2
 
   '@types/nodemailer@7.0.11':
     dependencies:
-      '@types/node': 25.3.0
+      '@types/node': 25.3.1
 
   '@types/pg@8.16.0':
     dependencies:
-      '@types/node': 25.3.0
-      pg-protocol: 1.11.0
+      '@types/node': 25.3.1
+      pg-protocol: 1.12.0
       pg-types: 2.2.0
 
   '@types/qs@6.14.0': {}
@@ -2699,12 +2717,12 @@ snapshots:
 
   '@types/send@1.2.1':
     dependencies:
-      '@types/node': 25.3.0
+      '@types/node': 25.3.1
 
   '@types/serve-static@2.2.0':
     dependencies:
       '@types/http-errors': 2.0.5
-      '@types/node': 25.3.0
+      '@types/node': 25.3.1
 
   '@vercel/build-utils@13.5.0':
     dependencies:
@@ -2830,10 +2848,10 @@ snapshots:
 
   bcryptjs@3.0.3: {}
 
-  better-auth@1.4.19(@prisma/client@7.4.1(prisma@7.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3))(mysql2@3.15.3)(pg@8.18.0)(prisma@7.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+  better-auth@1.4.19(@prisma/client@7.4.1(prisma@7.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3))(mysql2@3.15.3)(pg@8.19.0)(prisma@7.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
-      '@better-auth/core': 1.4.19(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@4.3.6))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.0)
-      '@better-auth/telemetry': 1.4.19(@better-auth/core@1.4.19(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@4.3.6))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.0))
+      '@better-auth/core': 1.4.19(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@4.3.6))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1)
+      '@better-auth/telemetry': 1.4.19(@better-auth/core@1.4.19(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@4.3.6))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1))
       '@better-auth/utils': 0.3.0
       '@better-fetch/fetch': 1.1.21
       '@noble/ciphers': 2.1.1
@@ -2842,12 +2860,12 @@ snapshots:
       defu: 6.1.4
       jose: 6.1.3
       kysely: 0.28.11
-      nanostores: 1.1.0
+      nanostores: 1.1.1
       zod: 4.3.6
     optionalDependencies:
       '@prisma/client': 7.4.1(prisma@7.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3)
       mysql2: 3.15.3
-      pg: 8.18.0
+      pg: 8.19.0
       prisma: 7.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
@@ -2954,6 +2972,10 @@ snapshots:
   citty@0.2.1: {}
 
   cjs-module-lexer@1.2.3: {}
+
+  cloudinary@2.9.0:
+    dependencies:
+      lodash: 4.17.23
 
   code-block-writer@10.1.1: {}
 
@@ -3267,7 +3289,7 @@ snapshots:
 
   glob@13.0.6:
     dependencies:
-      minimatch: 10.2.3
+      minimatch: 10.2.4
       minipass: 7.1.3
       path-scurry: 2.0.2
 
@@ -3361,6 +3383,8 @@ snapshots:
 
   lodash@4.17.21: {}
 
+  lodash@4.17.23: {}
+
   long@5.3.2: {}
 
   lru-cache@11.2.6: {}
@@ -3404,11 +3428,11 @@ snapshots:
     dependencies:
       '@isaacs/brace-expansion': 5.0.1
 
-  minimatch@10.2.3:
+  minimatch@10.2.4:
     dependencies:
       brace-expansion: 5.0.3
 
-  minimatch@3.1.4:
+  minimatch@3.1.5:
     dependencies:
       brace-expansion: 1.1.12
 
@@ -3436,6 +3460,10 @@ snapshots:
   mri@1.2.0: {}
 
   ms@2.1.3: {}
+
+  multer-storage-cloudinary@4.0.0(cloudinary@2.9.0):
+    dependencies:
+      cloudinary: 2.9.0
 
   multer@2.0.2:
     dependencies:
@@ -3469,7 +3497,7 @@ snapshots:
     dependencies:
       lru.min: 1.1.4
 
-  nanostores@1.1.0: {}
+  nanostores@1.1.1: {}
 
   negotiator@1.0.0: {}
 
@@ -3541,11 +3569,11 @@ snapshots:
 
   pg-int8@1.0.1: {}
 
-  pg-pool@3.11.0(pg@8.18.0):
+  pg-pool@3.12.0(pg@8.19.0):
     dependencies:
-      pg: 8.18.0
+      pg: 8.19.0
 
-  pg-protocol@1.11.0: {}
+  pg-protocol@1.12.0: {}
 
   pg-types@2.2.0:
     dependencies:
@@ -3555,11 +3583,11 @@ snapshots:
       postgres-date: 1.0.7
       postgres-interval: 1.2.0
 
-  pg@8.18.0:
+  pg@8.19.0:
     dependencies:
       pg-connection-string: 2.11.0
-      pg-pool: 3.11.0(pg@8.18.0)
-      pg-protocol: 1.11.0
+      pg-pool: 3.12.0(pg@8.19.0)
+      pg-protocol: 1.12.0
       pg-types: 2.2.0
       pgpass: 1.0.5
     optionalDependencies:
@@ -3900,14 +3928,14 @@ snapshots:
       '@ts-morph/common': 0.11.1
       code-block-writer: 10.1.1
 
-  ts-node@10.9.2(@types/node@25.3.0)(typescript@5.9.3):
+  ts-node@10.9.2(@types/node@25.3.1)(typescript@5.9.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.12
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 25.3.0
+      '@types/node': 25.3.1
       acorn: 8.16.0
       acorn-walk: 8.3.5
       arg: 4.1.3

@@ -10,7 +10,7 @@ model Meal {
   price       Float
   imageUrl    String?
 
-  // ✅ এই দুটি ফিল্ড যোগ করুন রেটিং ট্র্যাক করার জন্য
+ 
   averageRating Float       @default(0)
   totalReviews  Int         @default(0)
 

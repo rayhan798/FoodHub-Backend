@@ -6,15 +6,12 @@ export const getProviderById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    
     if (!id || typeof id !== "string") {
       return res.status(400).json({
         success: false,
         message: "Invalid or missing Provider ID",
       });
     }
-
-    console.log("Searching for Provider with ID:", id);
 
     const result = await ProviderService.getProviderById(id);
 
@@ -39,10 +36,19 @@ export const getProviderById = async (req: Request, res: Response) => {
 };
 
 // ===== Create or Update Profile (Authenticated) =====
-const createOrUpdateProfile = async (req: Request, res: Response) => {
+const createOrUpdateProfile = async (req: Request & { file?: any }, res: Response) => {
   try {
-    const userId = req.user!.id; 
-    const result = await ProviderService.createOrUpdateProfile(userId, req.body);
+    const userId = (req as any).user?.id;
+    if (!userId) throw new Error("User not authenticated.");
+
+    const profileData = { ...req.body };
+
+    // Cloudinary
+    if (req.file) {
+      profileData.image = req.file.path;
+    }
+
+    const result = await ProviderService.createOrUpdateProfile(userId, profileData);
 
     res.status(200).json({
       success: true,
@@ -55,10 +61,19 @@ const createOrUpdateProfile = async (req: Request, res: Response) => {
 };
 
 // ===== Meals =====
-const addMeal = async (req: Request, res: Response) => {
+const addMeal = async (req: Request & { file?: any }, res: Response) => {
   try {
-    const userId = req.user!.id;
-    const result = await ProviderService.addMeal(userId, req.body);
+    const userId = (req as any).user?.id;
+    if (!userId) throw new Error("User not authenticated.");
+
+    const mealData = { ...req.body };
+
+    // Cloudinary
+    if (req.file) {
+      mealData.imageUrl = req.file.path; 
+    }
+
+    const result = await ProviderService.addMeal(userId, mealData);
 
     res.status(201).json({ success: true, message: "Meal added", data: result });
   } catch (error: any) {
@@ -66,15 +81,19 @@ const addMeal = async (req: Request, res: Response) => {
   }
 };
 
-const updateMeal = async (req: Request, res: Response) => {
+const updateMeal = async (req: Request & { file?: any }, res: Response) => {
   try {
     const { id } = req.params;
+    if (!id) return res.status(400).json({ success: false, message: "Invalid meal ID" });
 
-    if (!id || Array.isArray(id)) {
-      return res.status(400).json({ success: false, message: "Invalid meal ID" });
+    const mealData = { ...req.body };
+
+    // Cloudinary 
+    if (req.file) {
+      mealData.imageUrl = req.file.path;
     }
 
-    const result = await ProviderService.updateMeal(id, req.body);
+    const result = await ProviderService.updateMeal(id as string, mealData);
     res.status(200).json({ success: true, message: "Meal updated", data: result });
   } catch (error: any) {
     res.status(400).json({ success: false, message: error.message });
@@ -84,12 +103,9 @@ const updateMeal = async (req: Request, res: Response) => {
 const deleteMeal = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
+    if (!id) return res.status(400).json({ success: false, message: "Invalid meal ID" });
 
-    if (!id || Array.isArray(id)) {
-      return res.status(400).json({ success: false, message: "Invalid meal ID" });
-    }
-
-    await ProviderService.deleteMeal(id);
+    await ProviderService.deleteMeal(id as string);
     res.status(200).json({ success: true, message: "Meal deleted" });
   } catch (error: any) {
     res.status(400).json({ success: false, message: error.message });
@@ -102,15 +118,11 @@ const updateOrderStatus = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { status } = req.body;
 
-    if (!id || Array.isArray(id)) {
-      return res.status(400).json({ success: false, message: "Invalid order ID" });
+    if (!id || !status) {
+      return res.status(400).json({ success: false, message: "Order ID and Status are required" });
     }
 
-    if (!status) {
-      return res.status(400).json({ success: false, message: "Status is required" });
-    }
-
-    const result = await ProviderService.updateOrderStatus(id, status);
+    const result = await ProviderService.updateOrderStatus(id as string, status);
     res.status(200).json({ success: true, message: "Order status updated", data: result });
   } catch (error: any) {
     res.status(400).json({ success: false, message: error.message });

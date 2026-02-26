@@ -31,6 +31,7 @@ export type ProviderProfileMinAggregateOutputType = {
   description: string | null
   address: string | null
   phone: string | null
+  imageUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -42,6 +43,7 @@ export type ProviderProfileMaxAggregateOutputType = {
   description: string | null
   address: string | null
   phone: string | null
+  imageUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -53,6 +55,7 @@ export type ProviderProfileCountAggregateOutputType = {
   description: number
   address: number
   phone: number
+  imageUrl: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -66,6 +69,7 @@ export type ProviderProfileMinAggregateInputType = {
   description?: true
   address?: true
   phone?: true
+  imageUrl?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -77,6 +81,7 @@ export type ProviderProfileMaxAggregateInputType = {
   description?: true
   address?: true
   phone?: true
+  imageUrl?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -88,6 +93,7 @@ export type ProviderProfileCountAggregateInputType = {
   description?: true
   address?: true
   phone?: true
+  imageUrl?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -172,6 +178,7 @@ export type ProviderProfileGroupByOutputType = {
   description: string | null
   address: string | null
   phone: string | null
+  imageUrl: string | null
   createdAt: Date
   updatedAt: Date
   _count: ProviderProfileCountAggregateOutputType | null
@@ -204,6 +211,7 @@ export type ProviderProfileWhereInput = {
   description?: Prisma.StringNullableFilter<"ProviderProfile"> | string | null
   address?: Prisma.StringNullableFilter<"ProviderProfile"> | string | null
   phone?: Prisma.StringNullableFilter<"ProviderProfile"> | string | null
+  imageUrl?: Prisma.StringNullableFilter<"ProviderProfile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -217,6 +225,7 @@ export type ProviderProfileOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -233,6 +242,7 @@ export type ProviderProfileWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"ProviderProfile"> | string | null
   address?: Prisma.StringNullableFilter<"ProviderProfile"> | string | null
   phone?: Prisma.StringNullableFilter<"ProviderProfile"> | string | null
+  imageUrl?: Prisma.StringNullableFilter<"ProviderProfile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProviderProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -246,6 +256,7 @@ export type ProviderProfileOrderByWithAggregationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ProviderProfileCountOrderByAggregateInput
@@ -263,6 +274,7 @@ export type ProviderProfileScalarWhereWithAggregatesInput = {
   description?: Prisma.StringNullableWithAggregatesFilter<"ProviderProfile"> | string | null
   address?: Prisma.StringNullableWithAggregatesFilter<"ProviderProfile"> | string | null
   phone?: Prisma.StringNullableWithAggregatesFilter<"ProviderProfile"> | string | null
+  imageUrl?: Prisma.StringNullableWithAggregatesFilter<"ProviderProfile"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ProviderProfile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ProviderProfile"> | Date | string
 }
@@ -273,6 +285,7 @@ export type ProviderProfileCreateInput = {
   description?: string | null
   address?: string | null
   phone?: string | null
+  imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutProviderProfileInput
@@ -286,6 +299,7 @@ export type ProviderProfileUncheckedCreateInput = {
   description?: string | null
   address?: string | null
   phone?: string | null
+  imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInput
@@ -297,6 +311,7 @@ export type ProviderProfileUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutProviderProfileNestedInput
@@ -310,6 +325,7 @@ export type ProviderProfileUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUncheckedUpdateManyWithoutProviderNestedInput
@@ -322,6 +338,7 @@ export type ProviderProfileCreateManyInput = {
   description?: string | null
   address?: string | null
   phone?: string | null
+  imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -332,6 +349,7 @@ export type ProviderProfileUpdateManyMutationInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -343,6 +361,7 @@ export type ProviderProfileUncheckedUpdateManyInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -364,6 +383,7 @@ export type ProviderProfileCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   address?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -375,6 +395,7 @@ export type ProviderProfileMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   address?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -386,6 +407,7 @@ export type ProviderProfileMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   address?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -442,6 +464,7 @@ export type ProviderProfileCreateWithoutUserInput = {
   description?: string | null
   address?: string | null
   phone?: string | null
+  imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealCreateNestedManyWithoutProviderInput
@@ -453,6 +476,7 @@ export type ProviderProfileUncheckedCreateWithoutUserInput = {
   description?: string | null
   address?: string | null
   phone?: string | null
+  imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInput
@@ -480,6 +504,7 @@ export type ProviderProfileUpdateWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUpdateManyWithoutProviderNestedInput
@@ -491,6 +516,7 @@ export type ProviderProfileUncheckedUpdateWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUncheckedUpdateManyWithoutProviderNestedInput
@@ -502,6 +528,7 @@ export type ProviderProfileCreateWithoutMealsInput = {
   description?: string | null
   address?: string | null
   phone?: string | null
+  imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutProviderProfileInput
@@ -514,6 +541,7 @@ export type ProviderProfileUncheckedCreateWithoutMealsInput = {
   description?: string | null
   address?: string | null
   phone?: string | null
+  imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -540,6 +568,7 @@ export type ProviderProfileUpdateWithoutMealsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutProviderProfileNestedInput
@@ -552,6 +581,7 @@ export type ProviderProfileUncheckedUpdateWithoutMealsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -594,6 +624,7 @@ export type ProviderProfileSelect<ExtArgs extends runtime.Types.Extensions.Inter
   description?: boolean
   address?: boolean
   phone?: boolean
+  imageUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -608,6 +639,7 @@ export type ProviderProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   description?: boolean
   address?: boolean
   phone?: boolean
+  imageUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -620,6 +652,7 @@ export type ProviderProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   description?: boolean
   address?: boolean
   phone?: boolean
+  imageUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -632,11 +665,12 @@ export type ProviderProfileSelectScalar = {
   description?: boolean
   address?: boolean
   phone?: boolean
+  imageUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProviderProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "restaurantName" | "description" | "address" | "phone" | "createdAt" | "updatedAt", ExtArgs["result"]["providerProfile"]>
+export type ProviderProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "restaurantName" | "description" | "address" | "phone" | "imageUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["providerProfile"]>
 export type ProviderProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   meals?: boolean | Prisma.ProviderProfile$mealsArgs<ExtArgs>
@@ -662,6 +696,7 @@ export type $ProviderProfilePayload<ExtArgs extends runtime.Types.Extensions.Int
     description: string | null
     address: string | null
     phone: string | null
+    imageUrl: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["providerProfile"]>
@@ -1095,6 +1130,7 @@ export interface ProviderProfileFieldRefs {
   readonly description: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly address: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly phone: Prisma.FieldRef<"ProviderProfile", 'String'>
+  readonly imageUrl: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly createdAt: Prisma.FieldRef<"ProviderProfile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ProviderProfile", 'DateTime'>
 }

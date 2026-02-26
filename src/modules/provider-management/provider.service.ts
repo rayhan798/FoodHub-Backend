@@ -1,11 +1,12 @@
 import { prisma } from "../../lib/prisma";
-import { OrderStatus } from "../../../generated/prisma/client";
+import { OrderStatus } from "../../../prisma/generated/prisma/client";
 
 interface ProviderProfilePayload {
   restaurantName: string;
   description?: string;
   address?: string;
   phone?: string;
+  image?: string;
 }
 
 const generateSlug = (name: string) =>
@@ -63,6 +64,7 @@ const getProviderById = async (id: string) => {
     allReviews: allReviews,
   };
 };
+
 // ===== Create or Update Profile =====
 const createOrUpdateProfile = async (
   userId: string,
@@ -82,6 +84,7 @@ const createOrUpdateProfile = async (
 const addMeal = async (userId: string, payload: any) => {
   const { name, description, price, categoryName, imageUrl } = payload;
 
+
   let category = await prisma.category.findFirst({
     where: { name: { equals: categoryName, mode: "insensitive" } },
   });
@@ -91,6 +94,7 @@ const addMeal = async (userId: string, payload: any) => {
       data: {
         name: categoryName,
         slug: generateSlug(categoryName),
+        status: "APPROVED",
       },
     });
   }
@@ -106,9 +110,9 @@ const addMeal = async (userId: string, payload: any) => {
   return prisma.meal.create({
     data: {
       name,
-      description,
-      price: parseFloat(price),
-      imageUrl,
+      description: description || "",
+      price: parseFloat(price) || 0,
+      imageUrl: imageUrl || "", 
       categoryId: category.id,
       providerId: providerProfile.id,
     },
@@ -116,8 +120,14 @@ const addMeal = async (userId: string, payload: any) => {
 };
 
 const updateMeal = async (id: string, payload: any) => {
-  if (payload.price) payload.price = parseFloat(payload.price);
-  return prisma.meal.update({ where: { id }, data: payload });
+
+  const updateData = { ...payload };
+  if (updateData.price) updateData.price = parseFloat(updateData.price);
+  
+  return prisma.meal.update({ 
+    where: { id }, 
+    data: updateData 
+  });
 };
 
 const deleteMeal = async (id: string) => {

@@ -1,18 +1,17 @@
 import { Router } from "express";
 import { MealController } from "./meal.controller";
 import authMiddleware, { UserRole } from "../../middlewares/authMiddleware";
-import { upload } from "../../middlewares/multer";
+import { upload } from "../../config/cloudinary"; 
 
 const router: Router = Router();
 
 router.get("/", MealController.getAllMeals);
-
 router.get("/:id", MealController.getMealDetails);
 
 router.post(
   "/",
   authMiddleware(UserRole.PROVIDER),
-  upload.single("image"),
+  upload.single("image"), 
   MealController.createMeal,
 );
 

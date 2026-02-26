@@ -9,21 +9,21 @@ const generateSlug = (name: string) =>
     .replace(/[\s_-]+/g, "-");
 
 const createMealIntoDB = async (payload: any) => {
-  const { name, price, description, imageUrl, image, category, providerId } =
-    payload;
+  console.log("📥 Service Received Payload:", JSON.stringify(payload, null, 2));
+
+  const { name, price, description, imageUrl, image, category, providerId } = payload;
 
   if (!name || !category) {
     throw new Error("Missing required fields: name or category is undefined.");
   }
 
-  const finalProviderId = providerId || "1";
-
-  const rawPath = imageUrl || image || "";
-  const cleanImageUrl =
-    typeof rawPath === "string" ? rawPath.replace(/\\/g, "/") : "";
+  const finalProviderId = providerId;
+  const cleanImageUrl = imageUrl || image || "";
 
   try {
-    return await prisma.meal.create({
+    console.log("🚀 Attempting to create meal in DB...");
+    
+    const result = await prisma.meal.create({
       data: {
         name,
         price: Number(price) || 0,
@@ -47,131 +47,162 @@ const createMealIntoDB = async (payload: any) => {
         category: true,
         provider: {
           include: {
-            user: { select: { name: true } },
+            // এখানে ভুল ছিল। User মডেলে সাধারণত image থাকে, imageUrl নয়।
+            // আপনার এরর অনুযায়ী ProviderProfile এ imageUrl নেই।
+            user: { 
+              select: { 
+                name: true,
+                image: true // এখানে আপনার স্কিমা অনুযায়ী 'image' ব্যবহার করুন
+              } 
+            },
           },
         },
       },
     });
+
+    console.log("✅ Meal Created Successfully in DB!");
+    return result;
+
   } catch (error: any) {
-    if (error.code === "P2025") {
-      throw new Error(`Provider with ID ${finalProviderId} does not exist.`);
+    console.error("❌ Prisma Error in createMealIntoDB:");
+    console.dir(error, { depth: null }); 
+
+    // ডাটাবেস কলামের সমস্যা হলে এই এররটি হ্যান্ডেল করবে
+    if (error.code === 'P2022') {
+       throw new Error("Database schema mismatch: A required column is missing in the database. Run 'npx prisma db push'.");
     }
-    throw new Error(error.message || "Failed to create meal");
+    
+    throw new Error(error.message || "Failed to create meal into database");
   }
 };
 
 const getAllMealsFromDB = async (query: Record<string, any>) => {
-  const searchTerm = query.search as string | undefined;
-  const category = query.category as string | undefined;
-  const { minPrice, maxPrice } = query;
+  try {
+    const searchTerm = query.search as string | undefined;
+    const category = query.category as string | undefined;
+    const { minPrice, maxPrice } = query;
 
-  const andFilters: Prisma.MealWhereInput[] = [
-    {
-      provider: {
-        user: {
-          status: UserStatus.APPROVED,
+    const andFilters: Prisma.MealWhereInput[] = [
+      {
+        provider: {
+          user: {
+            status: UserStatus.APPROVED,
+          },
         },
       },
-    },
-  ];
+    ];
 
-  if (searchTerm) {
-    andFilters.push({ name: { contains: searchTerm, mode: "insensitive" } });
-  }
+    if (searchTerm) {
+      andFilters.push({ name: { contains: searchTerm, mode: "insensitive" } });
+    }
 
-  if (category) {
-    andFilters.push({ category: { name: { equals: category } } });
-  }
+    if (category) {
+      andFilters.push({ category: { name: { equals: category } } });
+    }
 
-  if (minPrice) andFilters.push({ price: { gte: Number(minPrice) } });
-  if (maxPrice) andFilters.push({ price: { lte: Number(maxPrice) } });
+    if (minPrice) andFilters.push({ price: { gte: Number(minPrice) } });
+    if (maxPrice) andFilters.push({ price: { lte: Number(maxPrice) } });
 
-  return await prisma.meal.findMany({
-    where: {
-      AND: andFilters,
-    },
-    include: {
-      provider: {
-        select: {
-          id: true,
-          restaurantName: true,
-          user: { select: { name: true, status: true } },
-        },
+    return await prisma.meal.findMany({
+      where: {
+        AND: andFilters,
       },
-      category: true,
-    },
-    orderBy: { createdAt: "desc" },
-  });
+      include: {
+        provider: {
+          select: {
+            id: true,
+            restaurantName: true,
+            user: { select: { name: true, status: true } },
+          },
+        },
+        category: true,
+      },
+      orderBy: { createdAt: "desc" },
+    });
+  } catch (error) {
+    console.error("❌ Error in getAllMealsFromDB:", error);
+    throw error;
+  }
 };
 
 const getMealDetailsFromDB = async (id: string) => {
-  return await prisma.meal.findUnique({
-    where: { id },
-    include: {
-      provider: {
-        select: {
-          id: true,
-          restaurantName: true,
-          user: { select: { name: true, image: true, status: true } },
-        },
-      },
-      category: true,
-      reviews: {
-        include: {
-          customer: {
-            select: {
-              name: true,
-              image: true,
-            },
+  try {
+    return await prisma.meal.findUnique({
+      where: { id },
+      include: {
+        provider: {
+          select: {
+            id: true,
+            restaurantName: true,
+            user: { select: { name: true, image: true, status: true } },
           },
         },
-        orderBy: {
-          createdAt: "desc",
+        category: true,
+        reviews: {
+          include: {
+            customer: {
+              select: {
+                name: true,
+                image: true,
+              },
+            },
+          },
+          orderBy: {
+            createdAt: "desc",
+          },
         },
       },
-    },
-  });
+    });
+  } catch (error) {
+    console.error(`❌ Error fetching meal details for ID ${id}:`, error);
+    throw error;
+  }
 };
 
 const updateMealInDB = async (id: string, payload: any) => {
-  const { category, imageUrl, image, ...updateData } = payload;
+  try {
+    const { category, imageUrl, image, ...updateData } = payload;
 
-  if (updateData.price) updateData.price = Number(updateData.price);
+    if (updateData.price) updateData.price = Number(updateData.price);
+    const cleanImageUrl = imageUrl || image;
 
-  const rawPath = imageUrl || image;
-  let cleanImageUrl;
-  if (rawPath && typeof rawPath === "string") {
-    cleanImageUrl = rawPath.replace(/\\/g, "/");
-  }
-
-  return await prisma.meal.update({
-    where: { id },
-    data: {
-      ...updateData,
-      ...(cleanImageUrl && { imageUrl: cleanImageUrl }),
-      ...(category && {
-        category: {
-          connectOrCreate: {
-            where: { name: category },
-            create: {
-              name: category,
-              slug: generateSlug(category),
-              status: "ACTIVE",
+    return await prisma.meal.update({
+      where: { id },
+      data: {
+        ...updateData,
+        ...(cleanImageUrl && { imageUrl: cleanImageUrl }),
+        ...(category && {
+          category: {
+            connectOrCreate: {
+              where: { name: category },
+              create: {
+                name: category,
+                slug: generateSlug(category),
+                status: "APPROVED", 
+              },
             },
           },
-        },
-      }),
-    },
-    include: {
-      category: true,
-    },
-  });
+        }),
+      },
+      include: {
+        category: true,
+      },
+    });
+  } catch (error) {
+    console.error(`❌ Error updating meal ID ${id}:`, error);
+    throw error;
+  }
 };
 
 const deleteMealFromDB = async (id: string) => {
-  return await prisma.meal.delete({
-    where: { id },
-  });
+  try {
+    return await prisma.meal.delete({
+      where: { id },
+    });
+  } catch (error) {
+    console.error(`❌ Error deleting meal ID ${id}:`, error);
+    throw error;
+  }
 };
 
 export const MealService = {

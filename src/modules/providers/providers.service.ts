@@ -49,7 +49,12 @@ const getProviderWithMenuFromDB = async (id: string) => {
 
 const updateProviderProfileInDB = async (
   userId: string,
-  data: { address?: string; phone?: string; description?: string },
+  data: { 
+    address?: string; 
+    phone?: string; 
+    description?: string; 
+    image?: string 
+  },
 ) => {
   return await prisma.providerProfile.update({
     where: {
@@ -59,6 +64,7 @@ const updateProviderProfileInDB = async (
       address: data.address ?? null,
       phone: data.phone ?? null,
       description: data.description ?? null,
+      imageUrl: data.image ?? null, 
     },
   });
 };

@@ -45,3 +45,4 @@ uploads/
 # Build output (if you want Vercel to build)
 api/
 dist/
+.vercel

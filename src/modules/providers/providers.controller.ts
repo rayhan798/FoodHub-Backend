@@ -36,7 +36,7 @@ const getProviderWithMenu = async (req: Request, res: Response) => {
     const id = req.params.id as string;
 
     if (!id) { 
-       return res.status(400).json({ success: false, message: "Provider ID is required" });
+        return res.status(400).json({ success: false, message: "Provider ID is required" });
     }
 
     const result = await ProviderService.getProviderWithMenuFromDB(id);
@@ -62,20 +62,19 @@ const getProviderWithMenu = async (req: Request, res: Response) => {
 };
 
 
-const updateProviderProfile = async (req: Request, res: Response) => {
+const updateProviderProfile = async (req: Request & { file?: any }, res: Response) => {
   try {
-    const userId = req.user?.id; 
+    const userId = (req as any).user?.id; 
     if (!userId) {
       return res.status(401).json({ success: false, message: "Unauthorized! Please login again." });
     }
 
     const { address, phone, description } = req.body;
 
-    if (!address || !phone) {
-      return res.status(400).json({ 
-        success: false, 
-        message: "Address and Phone number are required fields." 
-      });
+    // Cloudinary
+    let imageUrl = req.body.image; 
+    if (req.file) {
+      imageUrl = req.file.path;
     }
 
     const updatedProfile = await prisma.providerProfile.update({
@@ -85,7 +84,8 @@ const updateProviderProfile = async (req: Request, res: Response) => {
       data: {
         address,
         phone,
-        description
+        description,
+        ...(imageUrl && { image: imageUrl }) 
       }
     });
 
