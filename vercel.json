@@ -1,7 +1,11 @@
 {
   "version": 2,
-  "buildCommand": "pnpm run build",
-  "outputDirectory": "api",
+  "builds": [
+    {
+      "src": "api/index.mjs",
+      "use": "@vercel/node"
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",
