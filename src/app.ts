@@ -38,7 +38,7 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use("/uploads", express.static(uploadDir));
 
 // --- 2. API Routes ---
-app.all("/api/auth/*splat", toNodeHandler(auth as any));
+app.use("/api/auth", toNodeHandler(auth as any));
 
 if (authRouter) app.use("/api/auth", authRouter);
 if (adminUserRouter) app.use("/api/admin/users", adminUserRouter);
