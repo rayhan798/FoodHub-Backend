@@ -24,7 +24,7 @@ const app: Application = express();
 // --- 1. Global Middlewares ---
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://foodhub-frontend-theta.vercel.app"],
     credentials: true,
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
