@@ -1,10 +1,11 @@
 {
   "version": 2,
   "buildCommand": "pnpm run build",
+  "outputDirectory": "api",
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/index.ts"
+      "src": "/(.*)",
+      "dest": "/api/index.mjs"
     }
   ]
 }
