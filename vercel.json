@@ -8,8 +8,11 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/api/(.*)",
       "dest": "/api/index.mjs"
     }
-  ]
+  ],
+  "env": {
+    "BETTER_AUTH_TRUST_HOST": "true"
+  }
 }
